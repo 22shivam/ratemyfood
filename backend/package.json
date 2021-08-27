@@ -1,0 +1,15 @@
+{
+  "name": "ratemyfood",
+  "version": "1.0.0",
+  "description": "ratemyprofessor, but for food",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beck and shivam",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.2"
+  }
+}
