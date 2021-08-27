@@ -1,24 +1,44 @@
 import express from 'express';
 
-import GetAll from '../controllers/review/get-all';
-import Create from '../controllers/review/create';
+import { GetAll, Create } from '../controllers/review'
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/reviews', async (req, res) => {
   const reviews = await GetAll();
 
-  res.json(reviews);
+  res.json({ 
+    reviews
+  });
 });
 
-router.post('/', async (req, res) => {
-  const review = await Create({
+router.post('/review', async (req, res) => {
+  try {
+    const review = await Create({
       rating: req.body.rating,
       comment: req.body.comment,
-      foodId: req.body.foodId
-  });
+      foodId: req.body.foodId,
+      author: req.body.author
+    });
 
-  res.json(review);
+    res.json({
+      review
+    });  
+  } catch(e: any) {
+    if(e.options && e.options.fieldMissing) {
+      res.status(400).json({
+        err: true,
+        msg: e.message,
+        fields: e.options.fields
+      })
+    } else {
+      res.status(500).json({
+        "err": true,
+        "msg": "An Internal Server error occurred"
+      });
+    }
+  }
+  
 });
 
 export default router;

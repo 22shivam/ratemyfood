@@ -29,7 +29,11 @@ const schema = new Schema<Food>({
   restrauntId: [{
     required: true,
     type: String
-  }]
+  }],
+  cost: {
+    required: true,
+    type: String
+  }
 });
 
 const FoodModel = model<Food>('Food', schema);

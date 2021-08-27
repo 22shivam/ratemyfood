@@ -4,7 +4,13 @@ import food from './food';
 
 var router = express.Router();
 
-router.use('/reviews', review);
-router.use('/food', food);
+var routes = [
+    review,
+    food
+];
+
+routes.forEach(route => {
+    router.use('/', route);
+});
 
 export default router;

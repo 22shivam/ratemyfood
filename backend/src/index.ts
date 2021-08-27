@@ -9,7 +9,7 @@ const app = express();
 
 async function run(): Promise<void> {
   console.log('Connecting to DB...');
-  await mongoose.connect('mongodb+srv://ratemyfoodadmin:YNvYjNoPe3KS3p7i@ratemyfood.jud4q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  await mongoose.connect(<string>process.env.DBURL, {
 
   });
   console.log('Connected to DB');

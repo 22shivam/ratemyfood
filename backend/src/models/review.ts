@@ -19,6 +19,10 @@ const schema = new Schema<Review>({
     foodId: {
       required: true,
       type: String
+    },
+    author: {
+      required: true,
+      type: String
     }
 });
 
