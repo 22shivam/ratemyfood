@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="container sm mx-auto">
       <Head>
         <title>ratemyfood</title>
         <meta name="description" content="ratemyprofessor, but for food" />
@@ -17,9 +15,39 @@ export default function Home() {
         <meta name="msapplication-TileColor" content="#da532c"/>
         <link rel="shortcut icon" href="/favicon_package_v0/favicon.ico" />
         <meta name="theme-color" content="#ffffff"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet"></link>
       </Head>
 
-    
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <center><div>
+        <p style={{fontFamily: "comfortaa", fontSize: "30px"}}>
+          ratemyprofessor, but for food
+        </p>
+      </div></center>
+      <br/>
+      <br/>
+
+      
+      <center><div class=" w-4/12 flex items-center p-6 space-x-6 h-20 rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70" style={{backgroundColor: "#723D46"}}>
+      <div class="flex bg-gray-100 p-4 w-72 space-x-4 rounded-lg" style={{backgroundColor: "#723D46"}}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input class="bg-gray-100 outline-none" type="text" placeholder="search for school" style={{backgroundColor: "#723D46"}}/>
+      </div>
+      <div class="bg-red-600 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer" style={{backgroundColor: "#923D46"}}>
+        <span>Search</span>
+      </div>
     </div>
+    </center>
+</div>
   )
 }
