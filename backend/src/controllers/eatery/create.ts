@@ -1,12 +1,12 @@
-import { FoodModel, Food } from '../../models/food';
+import { Eatery, EateryModel } from "../../models/eatery";
 import ParameterError from '../../utils/parameter-error';
 
-async function Create(params: Food): Promise<Food> {
-  const food = new FoodModel({
+async function Create(params: Eatery): Promise<Eatery> {
+  const eatery = new EateryModel({
     ...params
   });
 
-  let error = food.validateSync();
+  const error = eatery.validateSync();
   if(error) {
     const missing = Object.keys(error.errors);
     throw new ParameterError(`Request is missing required fields: ${missing.map(field => field)}`, {
@@ -15,10 +15,9 @@ async function Create(params: Food): Promise<Food> {
     });
   }
 
+  await eatery.save();
 
-  await food.save();
-
-  return food;
+  return eatery;
 }
 
 export default Create;

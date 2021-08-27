@@ -15,3 +15,11 @@ const schema = new Schema<School>({
         type: String
     }
 });
+
+const SchoolModel = model<School>('School', schema);
+
+export default SchoolModel;
+export {
+  SchoolModel,
+  School
+}
