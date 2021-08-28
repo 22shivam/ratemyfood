@@ -2,10 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import routes from './routes';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
+const allowedOrigins = ['http://localhost:3000'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
+app.use(cors(options)); 
 
 async function run(): Promise<void> {
   console.log('Connecting to DB...');
