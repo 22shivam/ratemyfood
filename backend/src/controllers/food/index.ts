@@ -1,9 +1,11 @@
 import GetAll from './get-all';
 import Create from './create';
 import Find from './find';
+import FindOne from './find-one';
 
 export {
     GetAll,
     Create,
-    Find
+    Find,
+    FindOne
 }

@@ -1,13 +1,14 @@
 import express from 'express';
 
 import { GetAll, Create } from '../controllers/review'
+import Find from '../controllers/review/find';
 
 const router = express.Router();
 
 router.get('/reviews', async (req, res) => {
   const reviews = await GetAll();
 
-  res.json({ 
+  res.json({
     reviews
   });
 });
@@ -23,7 +24,7 @@ router.post('/review', async (req, res) => {
 
     res.json({
       review
-    });  
+    });
   } catch(e: any) {
     if(e.options && e.options.fieldMissing) {
       res.status(400).json({
@@ -38,7 +39,16 @@ router.post('/review', async (req, res) => {
       });
     }
   }
-  
+});
+
+router.get('/food/:id/reviews', async (req, res) => {
+  const reviews = await Find({
+    foodId: req.body.id
+  });
+
+  res.send({
+    reviews
+  });
 });
 
 export default router;

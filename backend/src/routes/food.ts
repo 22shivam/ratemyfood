@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { GetAll, Create, Find } from '../controllers/food';
+import { GetAll, Create, Find, FindOne } from '../controllers/food';
 
 const router = express.Router();
 
@@ -40,6 +40,14 @@ router.post('/food', async (req, res) => {
       });
     }
   }
+});
+
+router.get('/food/:id', async (req, res) => {
+  const food = await FindOne(req.params.id);
+
+  res.json({
+    food
+  });
 });
 
 router.get('/eatery/:id/foods', async (req, res) => {

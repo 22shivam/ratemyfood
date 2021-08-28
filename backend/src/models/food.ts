@@ -26,10 +26,10 @@ const schema = new Schema<Food>({
     required: false,
     type: String
   }],
-  eateryId: [{
+  eateryId: {
     required: true,
     type: String
-  }],
+  },
   cost: {
     required: true,
     type: String
