@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { GetAll, Create } from '../controllers/food';
+import { GetAll, Create, Find } from '../controllers/food';
 
 const router = express.Router();
 
@@ -20,9 +20,9 @@ router.post('/food', async (req, res) => {
       description: req.body.description,
       reviews: [],
       cost: req.body.cost,
-      restrauntId: req.body.restrauntId
+      eateryId: req.body.eateryId
     });
-  
+
     res.json({
       food
     });
@@ -40,6 +40,16 @@ router.post('/food', async (req, res) => {
       });
     }
   }
+});
+
+router.get('/eatery/:id/foods', async (req, res) => {
+  const foods = await Find({
+    eateryId: req.params.id
+  });
+
+  res.json({
+    foods
+  });
 });
 
 export default router;

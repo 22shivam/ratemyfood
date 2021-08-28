@@ -6,7 +6,7 @@ interface Food {
   description: string;
   reviews: string[];
   cost: string;
-  restrauntId: string;
+  eateryId: string;
 }
 
 const schema = new Schema<Food>({
@@ -26,7 +26,7 @@ const schema = new Schema<Food>({
     required: false,
     type: String
   }],
-  restrauntId: [{
+  eateryId: [{
     required: true,
     type: String
   }],
