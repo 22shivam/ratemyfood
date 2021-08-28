@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-  export default function School() {
+  export default function Food() {
     
     const router = useRouter();
 
@@ -13,17 +13,17 @@ import Link from 'next/link'
     const { id } = router.query;
     console.log(id)
 
-    const res = await fetch(`http://localhost:8080/api/school/${id}/eateries`)
+    const res = await fetch(`http://localhost:8080/api/food/${id}/reviews`)
     const fetchedData = await res.json()
-    console.log('eateries', fetchedData.eateries)
-    setData(fetchedData.eateries)
+    console.log('eateries', fetchedData)
+    setData(fetchedData.reviews)
     
     
     },[router.isReady])
 
     return (
           <div>
-             {data ? data.map((eatery)=>{console.log(eatery); return <div key={eatery._id}><Link href={`/eatery/${eatery._id}/`}>{eatery.name}</Link></div>}): "we dont have data"}
+             {data ? data.map((review)=>{return <div key={review._id}>{review.comment}</div>}): "we dont have data"}
           </div>
       )
   }
