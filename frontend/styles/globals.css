@@ -9,8 +9,29 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
-  background-color: #EF767A;
+  /* background-color: #EF767A; */
+  overflow-x: hidden;
 }
+
+body {
+  position: relative;
+  font: 30px;
+  padding: 10px;
+}
+
+::-ms-clear {
+    display: none;
+}
+
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
 
 a {
   color: inherit;
@@ -19,4 +40,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@media screen and (max-width : 1204px)
+{
+  body
+  {
+    font:15px;
+  }
 }
