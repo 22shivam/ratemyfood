@@ -1,5 +1,5 @@
 import express from 'express';
-import { GetAll, Create, Find } from '../controllers/eatery';
+import { GetAll, Create, Find, FindOne } from '../controllers/eatery';
 
 const router = express.Router();
 
@@ -50,5 +50,13 @@ router.get('/school/:id/eateries', async (req, res) => {
     eateries
   });
 });
+
+router.get('/eatery/:id', async (req, res) => {
+  const eatery = await FindOne(req.params.id);
+
+  res.json({
+    eatery
+  })
+})
 
 export default router;
