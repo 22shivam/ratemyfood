@@ -11,6 +11,8 @@ router.get('/schools', async (req, res) => {
   });
 });
 
+
+
 router.post('/school', async (req, res) => {
   try {
     const school = await Create({
