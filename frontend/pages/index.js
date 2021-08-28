@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import mainPic from '../public/homepagepic.png'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState();
@@ -46,6 +47,7 @@ export default function Home() {
         <br />
         <div className="row justify-content-center">
           <div className="col-12 col-md-10 col-lg-8">
+
             <form method="POST" action="/api/search">
               <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
                 <div className="col-auto">
@@ -59,7 +61,9 @@ export default function Home() {
                 </div>
 
                 <div className="col-auto">
+                  <Link href={`/search?term=${searchValue}`}>
                   <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "20px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">enter</button>
+                  </Link>
                 </div>
 
               </div>
