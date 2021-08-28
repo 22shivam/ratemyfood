@@ -1,5 +1,5 @@
 import express from 'express';
-import { GetAll, Create } from '../controllers/eatery';
+import { GetAll, Create, Find } from '../controllers/eatery';
 
 const router = express.Router();
 
@@ -39,6 +39,16 @@ router.post('/eatery', async (req, res) => {
       });
     }
   }
+});
+
+router.get('/school/:id/eateries', async (req, res) => {
+  const eateries = await Find({
+    schoolId: req.params.id
+  });
+
+  res.json({
+    eateries
+  });
 });
 
 export default router;
