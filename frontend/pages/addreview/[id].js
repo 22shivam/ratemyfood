@@ -55,27 +55,27 @@ export default function ReviewForm() {
             <NavLike heading="add review" onBack={router.back}></NavLike>
             <br />
             <form className="container" onSubmit={addReview}>
-                <div class="form-group mb-2">
+                <div className="form-group mb-2">
                     <FormLabel heading="name"></FormLabel>
-                    <input value={name} required type="text" class="form-control shadow-none rounded-3xl mb-2" id="name" aria-describedby="name" onChange={(e) => { setName(e.target.value) }} />
-                    <div class="form-check">
-                        <input class="form-check-input shadow-none" onClick={annonymousButtonClick} type="checkbox" value="" id="flexCheckDefault" />
-                        <label class="form-check-label" style={{ fontFamily: "comfortaa", fontSize: "15px", padding: "0px", borderRadius: "20px", color: "black" }} for="flexCheckDefault">
+                    <input value={name} required type="text" className="form-control shadow-none rounded-3xl mb-2" id="name" aria-describedby="name" onChange={(e) => { setName(e.target.value) }} />
+                    <div className="form-check">
+                        <input className="form-check-input shadow-none" onClick={annonymousButtonClick} type="checkbox" value="" id="flexCheckDefault" />
+                        <label className="form-check-label" style={{ fontFamily: "comfortaa", fontSize: "15px", padding: "0px", borderRadius: "20px", color: "black" }} for="flexCheckDefault">
                             select to remain annonymous
                         </label>
                     </div>
                 </div>
 
-                <div class="form-group mb-2 mt-4">
+                <div className="form-group mb-2 mt-4">
                     <FormLabel heading="review"></FormLabel>
-                    <textarea required class="form-control shadow-none rounded-3xl mb-2" id="review" rows="3" value={review} onChange={(e)=>{setReview(e.target.value)}}></textarea>
+                    <textarea required className="form-control shadow-none rounded-3xl mb-2" id="review" rows="3" value={review} onChange={(e)=>{setReview(e.target.value)}}></textarea>
                 </div>
 
                 <div className="form-group mb-2 mt-4 flex" style={{alignItems:"center"}}>
                     <label className="mb-2 px-3 mr-3" for="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>inline rating</label>
     
-                    <fieldset class="starability-basic" style={{alignItems:"center", position: 'relative', top: "9px"}}>
-                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." onClick={()=>{setRating("0")}}/>
+                    <fieldset className="starability-basic" style={{alignItems:"center", position: 'relative', top: "9px"}}>
+                        <input type="radio" id="no-rate" className="input-no-rate" name="rating" value="0" checked aria-label="No rating." onClick={()=>{setRating("0")}}/>
                         <input type="radio" id="first-rate1" name="rating" value="1" onClick={()=>{setRating("1")}}/>
                         <label htmlFor="first-rate1" title="Terrible">1 star</label>
                         <input type="radio" id="first-rate2" name="rating" value="2" onClick={()=>{setRating("2")}}/>
@@ -94,7 +94,7 @@ export default function ReviewForm() {
                 <br/>
                 <br/>
                 <center>
-                <button type="submit" class="btn btn-primary mb-2 px-4" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "12px" }}>submit</button>
+                <button type="submit" className="btn btn-primary mb-2 px-4" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "12px" }}>submit</button>
                 </center>
             </form>
 
