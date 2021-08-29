@@ -17,9 +17,9 @@ export default function School() {
     
     setId(schoolId)
 
-    const res = await fetch(`http://localhost:8080/api/school/${id}/eateries`)
+    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
     const fetchedData = await res.json()
-    const res2 = await fetch('http://localhost:8080/api/schools/')
+    const res2 = await fetch('https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/')
     const fetchedData2 = await res2.json()
     fetchedData2.schools.forEach((school) => {
       if (school._id === id) {

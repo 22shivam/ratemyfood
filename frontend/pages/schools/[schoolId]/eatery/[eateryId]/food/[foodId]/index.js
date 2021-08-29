@@ -20,11 +20,11 @@ export default function Food() {
     setSchoolId(schoolId)
     setEateryId(eateryId)
 
-    const res = await fetch(`http://localhost:8080/api/food/${id}/reviews`)
+    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/food/${id}/reviews`)
     const fetchedData = await res.json()
     setData(fetchedData.reviews)
 
-    const res2 = await fetch(`http://localhost:8080/api/food/${id}/`)
+    const res2 = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/food/${id}/`)
     const fetchedData2 = await res2.json()
     setFoodItem(fetchedData2.food.name)
 

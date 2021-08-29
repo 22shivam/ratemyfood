@@ -14,7 +14,7 @@ export default function Search() {
 
   useEffect(async () => {
 
-    const res = await fetch(`http://localhost:8080/api/schools/`)
+    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/`)
     const fetchedData = await res.json()
     setData(fetchedData.schools)
 
