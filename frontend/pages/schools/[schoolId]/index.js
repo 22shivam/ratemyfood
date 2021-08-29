@@ -21,12 +21,8 @@ export default function School() {
     const fetchedData = await res.json()
     const res2 = await fetch('http://localhost:8080/api/schools/')
     const fetchedData2 = await res2.json()
-
-    console.log(fetchedData2.schools)
-    console.log(id)
     fetchedData2.schools.forEach((school) => {
       if (school._id === id) {
-        console.log(id, school._id)
         setSchoolName(school.name)
       }
     })

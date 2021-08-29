@@ -14,14 +14,12 @@ export default function Eatery() {
 
   useEffect(async () => {
     if (!router.isReady) { return };
-    console.log(router.query)
     const { eateryId, schoolId } = router.query;
     setId(eateryId)
     setSchoolId(schoolId)
 
     const res = await fetch(`http://localhost:8080/api/eatery/${id}/foods`)
     const fetchedData = await res.json()
-    console.log('eateries', fetchedData)
     setData(fetchedData.foods)
 
     const res2 = await fetch(`http://localhost:8080/api/eatery/${id}`)

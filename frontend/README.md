@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## to do
+1. we need to add search functionality for eateries
+2. reviews should be sorted earliest to latest
+
 ## Getting Started
 
 First, run the development server:

@@ -22,7 +22,6 @@ export default function Food() {
 
     const res = await fetch(`http://localhost:8080/api/food/${id}/reviews`)
     const fetchedData = await res.json()
-    console.log('eateries', fetchedData)
     setData(fetchedData.reviews)
 
     const res2 = await fetch(`http://localhost:8080/api/food/${id}/`)
@@ -82,22 +81,4 @@ export default function Food() {
       </div>
     </>
   )
-}
-
-function generateRatingJSX(rating) {
-  console.log(rating, typeof rating)
-  let jsxarray = []
-  for (let i = 0; i < rating; i++) {
-    jsxarray.push(<li>
-      <i className="fas fa-heart fa-sm text-red-500 mr-1"></i>
-    </li>)
-  }
-
-  for (let i = 0; i < (5 - rating); i++) {
-    jsxarray.push(<li>
-      <i className="far fa-heart fa-sm text-red-500 mr-1"></i>
-    </li>)
-  }
-
-  return jsxarray
 }

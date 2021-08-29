@@ -10,7 +10,7 @@ export default function SearchBar() {
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8">
 
-          <form method="POST" action="/api/search">
+          <form>
             <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
               <div className="col-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">

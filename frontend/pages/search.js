@@ -10,15 +10,12 @@ export default function Search() {
   const router = useRouter();
   const { term } = router.query;
 
-  console.log(term);
-
   const [data, setData] = useState([])
 
   useEffect(async () => {
 
     const res = await fetch(`http://localhost:8080/api/schools/`)
     const fetchedData = await res.json()
-    console.log(fetchedData.schools)
     setData(fetchedData.schools)
 
   }, [])
@@ -36,8 +33,7 @@ export default function Search() {
       <br/>
       
 
-      {data ? data.map((school) => {
-        console.log(school); return (
+      {data ? data.map((school) => {return (
           
           <div key={school._id}>
             <center>
