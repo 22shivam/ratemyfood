@@ -60,7 +60,7 @@ export default function ReviewForm() {
                     <input value={name} required type="text" className="form-control shadow-none rounded-3xl mb-2" id="name" aria-describedby="name" onChange={(e) => { setName(e.target.value) }} />
                     <div className="form-check">
                         <input className="form-check-input shadow-none" onClick={annonymousButtonClick} type="checkbox" value="" id="flexCheckDefault" />
-                        <label className="form-check-label" style={{ fontFamily: "comfortaa", fontSize: "15px", padding: "0px", borderRadius: "20px", color: "black" }} for="flexCheckDefault">
+                        <label className="form-check-label" style={{ fontFamily: "comfortaa", fontSize: "15px", padding: "0px", borderRadius: "20px", color: "black" }} htmlFor="flexCheckDefault">
                             select to remain annonymous
                         </label>
                     </div>
@@ -72,7 +72,7 @@ export default function ReviewForm() {
                 </div>
 
                 <div className="form-group mb-2 mt-4 flex" style={{alignItems:"center"}}>
-                    <label className="mb-2 px-3 mr-3" for="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>inline rating</label>
+                    <label className="mb-2 px-3 mr-3" htmlFor="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>inline rating</label>
     
                     <fieldset className="starability-basic" style={{alignItems:"center", position: 'relative', top: "9px"}}>
                         <input type="radio" id="no-rate" className="input-no-rate" name="rating" value="0" checked aria-label="No rating." onClick={()=>{setRating("0")}}/>

@@ -56,8 +56,8 @@ export default function Eatery() {
 
 
                     <h1 className="mb-2 font-bold text-2xl text-center text-lowercase" style={{ fontFamily: "comfortaa", fontSize: "25px", fontWeight: "600" }}>{food.name}</h1>
-                    <span class="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">${food.cost}</span>
-                    <div style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} class="text-sm font-semibold grayout py-1 px-3 rounded-full mt-2 text-lowercase">description: {food.description}</div>
+                    <span className="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">${food.cost}</span>
+                    <div style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} className="text-sm font-semibold grayout py-1 px-3 rounded-full mt-2 text-lowercase">description: {food.description}</div>
                   </div>
 
                 </div>
