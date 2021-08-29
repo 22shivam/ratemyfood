@@ -43,7 +43,8 @@ router.post('/review', async (req, res) => {
 
 router.get('/food/:id/reviews', async (req, res) => {
   const reviews = await Find({
-    foodId: req.body.id
+    foodId: req.params.id 
+    
   });
 
   res.send({
