@@ -61,7 +61,7 @@ export default function School() {
                     
 
                       <h1 className="mb-2 font-bold text-2xl text-center text-lowercase" style={{ fontFamily: "comfortaa", fontSize: "25px", fontWeight: "600" }}>{eatery.name}</h1>
-                      <span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} class="text-sm font-semibold grayout py-1 px-3 text-lowercase rounded-full">location: {eatery.location}</span>
+                      <span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} className="text-sm font-semibold grayout py-1 px-3 text-lowercase rounded-full">location: {eatery.location}</span>
                     </div>
 
                   </div>
