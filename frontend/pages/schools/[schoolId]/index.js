@@ -50,9 +50,9 @@ export default function School() {
 
       {data ? data.map((eatery) => {
         return (
-          <div>
+          <div key={eatery._id}>
             <center>
-              <div key={eatery._id}>
+              <div >
                 <Link href={`/schools/${id}/eatery/${eatery._id}`}>
                   <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
                     {/* <center><Image src="/images/indianaUniversityLogo.jpeg" alt={eatery.name} height="200" width="200" /></center> */}

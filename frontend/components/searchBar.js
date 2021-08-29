@@ -1,8 +1,8 @@
 import {useState} from "react"
 import Link from "next/link"
 
-export default function searchBar() {
-    const [searchValue, setSearchValue] = useState();
+export default function SearchBar() {
+    const [searchValue, setSearchValue] = useState("");
     return (
 
       <div className="container">

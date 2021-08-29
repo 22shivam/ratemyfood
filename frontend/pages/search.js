@@ -38,8 +38,9 @@ export default function Search() {
 
       {data ? data.map((school) => {
         console.log(school); return (
-          <center>
+          
           <div key={school._id}>
+            <center>
               <Link href={`/schools/${school._id}`}>
               <div className=" shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
                 <center><Image src="/images/indianaUniversityLogo.jpeg" alt={school.name} height="200" width="200"/></center>
@@ -50,10 +51,12 @@ export default function Search() {
               
             </div>
             </Link>
+            </center>
+
+          <br></br>
+          <br></br>
           </div>
-          <br></br>
-          <br></br>
-          </center>
+          
         )
       }) : "we dont have data"}
     </div>
