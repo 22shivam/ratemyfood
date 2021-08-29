@@ -7,6 +7,7 @@ import Head from 'next/head'
 export default function ReviewForm() {
     const addReview = event => {
         event.preventDefault()
+        console.log(event.target.form)
     }
 
     const router = useRouter();
@@ -43,9 +44,11 @@ export default function ReviewForm() {
                     <textarea class="form-control shadow-none rounded-3xl mb-2" id="review" rows="3"></textarea>
                 </div>
 
-                <div className="form-group mb-2 mt-4">
-                    <FormLabel heading="inline rating:"></FormLabel>
-                    <fieldset class="starability-basic">
+                <div className="form-group mb-2 mt-4 flex" style={{alignItems:"center"}}>
+                {/* <FormLabel heading="inline rating"></FormLabel> */}
+                    <label className="mb-2 px-3 mr-3" for="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>inline rating</label>
+    
+                    <fieldset class="starability-basic" style={{alignItems:"center", position: 'relative', top: "9px"}}>
                         <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
                         <input type="radio" id="first-rate1" name="rating" value="1" />
                         <label for="first-rate1" title="Terrible">1 star</label>
@@ -62,9 +65,11 @@ export default function ReviewForm() {
 
                 </div>
 
-
-
-                <button type="submit" class="btn btn-primary" onClick={addReview}>Submit</button>
+                <br/>
+                <br/>
+                <center>
+                <button type="submit" class="btn btn-primary mb-2 px-4" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "12px" }} onClick={addReview}>submit</button>
+                </center>
             </form>
 
             <br />
