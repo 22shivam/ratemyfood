@@ -55,7 +55,7 @@ export default function School() {
               <div key={eatery._id}>
                 <Link href={`/schools/${id}/eatery/${eatery._id}`}>
                   <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
-                    <center><Image src="/images/indianaUniversityLogo.jpeg" alt={eatery.name} height="200" width="200" /></center>
+                    {/* <center><Image src="/images/indianaUniversityLogo.jpeg" alt={eatery.name} height="200" width="200" /></center> */}
 
                     <div className="p-4 bg-white">        
                     
