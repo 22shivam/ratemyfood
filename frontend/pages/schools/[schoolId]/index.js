@@ -2,19 +2,20 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import NavLike from '../../components/navLike'
+import NavLike from '../../../components/navLike'
 
 export default function School() {
 
   const router = useRouter();
-
+  const [id, setId] = useState("")
   const [data, setData] = useState([])
   const [schoolName, setSchoolName] = useState("")
 
   useEffect(async () => {
     if (!router.isReady) { return };
-    const { id } = router.query;
-    console.log(id)
+    const { schoolId } = router.query;
+    
+    setId(schoolId)
 
     const res = await fetch(`http://localhost:8080/api/school/${id}/eateries`)
     const fetchedData = await res.json()
@@ -22,8 +23,10 @@ export default function School() {
     const fetchedData2 = await res2.json()
 
     console.log(fetchedData2.schools)
+    console.log(id)
     fetchedData2.schools.forEach((school) => {
       if (school._id === id) {
+        console.log(id, school._id)
         setSchoolName(school.name)
       }
     })
@@ -33,16 +36,14 @@ export default function School() {
     //     break
     //   }
     // }
-
-    console.log('eateries', fetchedData.eateries)
     setData(fetchedData.eateries)
 
 
-  }, [router.isReady])
+  }, [router.isReady, id])
 
   return (
     <div className="mt-6">
-      <NavLike heading={schoolName} onBack={router.back}></NavLike>
+      <NavLike heading={schoolName} onBack={()=>{router.push("/")}}></NavLike>
       
       <br />
       <br />
@@ -52,7 +53,7 @@ export default function School() {
           <div>
             <center>
               <div key={eatery._id}>
-                <Link href={`/eatery/${eatery._id}`}>
+                <Link href={`/schools/${id}/eatery/${eatery._id}`}>
                   <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
                     <center><Image src="/images/indianaUniversityLogo.jpeg" alt={eatery.name} height="200" width="200" /></center>
 

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import NavLike from '../../components/navLike'
+import NavLike from '../../../../../../../components/navLike'
 export default function Food() {
 
   const router = useRouter();
@@ -10,12 +10,15 @@ export default function Food() {
   const [data, setData] = useState([])
   const [foodItem, setFoodItem] = useState("")
   const [id, setId] = useState("")
+  const [schoolId, setSchoolId] = useState("")
+  const [eateryId, setEateryId] = useState("")
 
   useEffect(async () => {
     if (!router.isReady) { return };
-    const { id } = router.query;
-    setId(id)
-    console.log(id)
+    const { foodId, eateryId, schoolId } = router.query;
+    setId(foodId)
+    setSchoolId(schoolId)
+    setEateryId(eateryId)
 
     const res = await fetch(`http://localhost:8080/api/food/${id}/reviews`)
     const fetchedData = await res.json()
@@ -26,7 +29,7 @@ export default function Food() {
     const fetchedData2 = await res2.json()
     setFoodItem(fetchedData2.food.name)
 
-  }, [router.isReady])
+  }, [router.isReady, id])
 
   return (
     <>
@@ -34,7 +37,7 @@ export default function Food() {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       </Head>
       <div>
-        <NavLike heading={`reviews for ${foodItem}`} onBack={router.back}></NavLike>
+        <NavLike heading={`reviews for ${foodItem}`} onBack={()=>{router.push(`/schools/${schoolId}/eatery/${eateryId}`)}}></NavLike>
 
         <br />
         <center>

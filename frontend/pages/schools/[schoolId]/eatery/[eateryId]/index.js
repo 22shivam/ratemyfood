@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import NavLike from '../../components/navLike'
+import NavLike from '../../../../../components/navLike'
 
 export default function Eatery() {
 
@@ -9,11 +9,15 @@ export default function Eatery() {
 
   const [data, setData] = useState([])
   const [eatery, setEatery] = useState("")
+  const [id, setId] = useState("")
+  const [schoolId, setSchoolId] = useState("")
 
   useEffect(async () => {
     if (!router.isReady) { return };
-    const { id } = router.query;
-    console.log(id)
+    console.log(router.query)
+    const { eateryId, schoolId } = router.query;
+    setId(eateryId)
+    setSchoolId(schoolId)
 
     const res = await fetch(`http://localhost:8080/api/eatery/${id}/foods`)
     const fetchedData = await res.json()
@@ -26,13 +30,13 @@ export default function Eatery() {
     setEatery(fetchedData2.eatery.name)
 
 
-  }, [router.isReady])
+  }, [router.isReady, id])
 
   return (
     <div className="mt-6">
       
       
-      <NavLike heading={eatery} onBack={router.back}></NavLike>
+      <NavLike heading={eatery} onBack={()=>{router.push(`/schools/${schoolId}/`)}}></NavLike>
 
         <center>
         <br/><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200"}} className="grayout">select item to view reviews</span>
@@ -44,7 +48,7 @@ export default function Eatery() {
           <div key={food._id}>
             <center>
 
-              <Link href={`/food/${food._id}`}>
+              <Link href={`/schools/${schoolId}/eatery/${id}/food/${food._id}`}>
                 <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
 
 

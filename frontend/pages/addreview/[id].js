@@ -20,7 +20,7 @@ export default function ReviewForm() {
                 author: name
             }),
           })
-        router.push(`/food/${id}`)
+        router.back()
 
     }
 
