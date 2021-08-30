@@ -47,7 +47,7 @@ export default function Food() {
 
         <br />
 
-        {data ? data.map((review) => {
+        {data ?data.map((review) => {
           return (
             <div key={review._id}>
               <center>
