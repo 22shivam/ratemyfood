@@ -7,7 +7,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const allowedOrigins = ['http://localhost:3000', 'https://ratemyfood.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://ratemyfood.vercel.app', 'https://ratemyfood.tech', 'https://www.ratemyfood.tech'];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins
