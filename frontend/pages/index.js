@@ -42,6 +42,7 @@ export default function Home() {
       </div></center>
 
       <SearchBar/>
+      <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" class="form-text text-muted block mb-2 mt-2 mb-2 cursor-pointer underline">share feedback</small></Link>
 
       <br />
       <br />

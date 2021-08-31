@@ -37,8 +37,7 @@ export default function Food() {
       </Head>
       <div>
         <NavLike heading={`reviews for ${foodItem}`} onBack={()=>{router.push(`/schools/${schoolId}/eatery/${eateryId}`)}}></NavLike>
-
-        <br />
+        <br/>
         <center>
           <Link href={`/addreview/${id}`}>
             <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">add review</button>
