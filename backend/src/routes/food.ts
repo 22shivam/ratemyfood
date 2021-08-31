@@ -62,7 +62,7 @@ router.get('/eatery/:id/foods', async (req, res) => {
 
 router.get('/eatery/:id/foods/search', async (req, res) => {
   try {
-    const results = Search(req.query.query);
+    const results = await Search(req.query.query);
 
     res.json({
       results
@@ -77,7 +77,7 @@ router.get('/eatery/:id/foods/search', async (req, res) => {
 
 router.get('/school/:id/foods/search', async (req, res) => {
   try {
-    const results = Search(req.query.query);
+    const results = await Search(req.query.query);
 
     res.json({
       results

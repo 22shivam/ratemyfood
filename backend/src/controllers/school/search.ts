@@ -1,6 +1,7 @@
 import { School , SchoolModel } from '../../models/school';
 
-async function Search(query: any): Promise<School[]> {
+async function Search(query: any): Promise<(School)[]> {
+  console.log(query);
   if(!query) {
     return [];
   }
@@ -8,7 +9,7 @@ async function Search(query: any): Promise<School[]> {
   const results = await SchoolModel.aggregate([
     {
       $search: {
-        index: 'schools',
+        index: 'school',
         autocomplete: {
           query: `${query}`,
           path: "name",
@@ -20,6 +21,8 @@ async function Search(query: any): Promise<School[]> {
       }
     }
   ]);
+
+  console.log(results);
 
   return results;
 }

@@ -41,7 +41,7 @@ router.post('/school', async (req, res) => {
 
 router.get('/schools/search', async (req, res) => {
   try {
-    const results = Search(req.query.query);
+    const results = await Search(req.query.query);
 
     res.json({
       results
