@@ -1,5 +1,5 @@
 import express from 'express';
-import { GetAll, Create } from '../controllers/school';
+import { GetAll, Create, Search } from '../controllers/school';
 
 var router = express.Router();
 
@@ -36,6 +36,22 @@ router.post('/school', async (req, res) => {
         "msg": "An Internal Server error occurred"
       });
     }
+  }
+});
+
+router.get('/schools/search', async (req, res) => {
+  try {
+    const results = Search(req.query.query);
+
+    res.json({
+      results
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      "err": true,
+      "msg": "An Internal Server error occurred"
+    });
   }
 });
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { GetAll, Create, Find, FindOne } from '../controllers/eatery';
+import { GetAll, Create, Find, FindOne, Search } from '../controllers/eatery';
 
 const router = express.Router();
 
@@ -57,6 +57,14 @@ router.get('/eatery/:id', async (req, res) => {
   res.json({
     eatery
   })
-})
+});
+
+router.get('/school/:id/eateries/search', async (req, res) => {
+  const results = await Search(req.query.query);
+
+  res.json({
+    results
+  });
+});
 
 export default router;

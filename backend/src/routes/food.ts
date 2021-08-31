@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { GetAll, Create, Find, FindOne } from '../controllers/food';
+import { GetAll, Create, Find, FindOne, Search } from '../controllers/food';
 
 const router = express.Router();
 
@@ -58,6 +58,36 @@ router.get('/eatery/:id/foods', async (req, res) => {
   res.json({
     foods
   });
+});
+
+router.get('/eatery/:id/foods/search', async (req, res) => {
+  try {
+    const results = Search(req.query.query);
+
+    res.json({
+      results
+    });
+  } catch(e) {
+    res.status(500).json({
+      "err": true,
+      "msg": "An Internal Server error occurred"
+    });
+  }
+});
+
+router.get('/school/:id/foods/search', async (req, res) => {
+  try {
+    const results = Search(req.query.query);
+
+    res.json({
+      results
+    });
+  } catch(e) {
+    res.status(500).json({
+      "err": true,
+      "msg": "An Internal Server error occurred"
+    });
+  }
 });
 
 export default router;
