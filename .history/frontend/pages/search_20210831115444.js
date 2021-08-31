@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SearchBar from '../components/searchBar'
 import Image from 'next/image'
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [searchedForValue, setSearchedForValue] = useState("")
+
   const router = useRouter();
+  
+  
 
   const [data, setData] = useState([])
 
@@ -25,10 +29,12 @@ export default function Search() {
   useEffect(async () => {
     if (!router.isReady) { return };
     const { term } = router.query;
+    console.log(term)
     const res = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${term}`)
     const fetchedData = await res.json()
     setSearchedForValue(term)
     setData(fetchedData.results)
+
 
 
   }, [router.isReady])

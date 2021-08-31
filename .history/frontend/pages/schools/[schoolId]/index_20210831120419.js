@@ -15,12 +15,6 @@ export default function School() {
 
   const queryAPI = async (e) => {
     e.preventDefault()
-    if (searchValue==="") {
-      const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
-    const fetchedData = await res.json()
-    setData(fetchedData.eateries)
-      return
-    }
     console.log(searchValue)
     const queryRes = await fetch(`https://api.ratemyfood.tech/api/school/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()

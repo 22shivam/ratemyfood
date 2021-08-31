@@ -1,37 +1,27 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SearchBar from '../components/searchBar'
 import Image from 'next/image'
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [searchedForValue, setSearchedForValue] = useState("")
+
   const router = useRouter();
+  const { term } = router.query;
+  
 
   const [data, setData] = useState([])
 
   const queryAPI = async (e) => {
     e.preventDefault()
-    console.log(searchValue)
-   
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${searchValue}`)
+    const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${searchValue || term}`)
     const queryFetchedData = await queryRes.json()
-    console.log(queryFetchedData.results)
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
-    router.push(`search?term=${searchValue}`)
+    
   }
-
-  useEffect(async () => {
-    if (!router.isReady) { return };
-    const { term } = router.query;
-    const res = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${term}`)
-    const fetchedData = await res.json()
-    setSearchedForValue(term)
-    setData(fetchedData.results)
-
-
-  }, [router.isReady])
 
   // useEffect(async () => {
 
@@ -44,7 +34,6 @@ export default function Search() {
 
   return (
     <div className="container mt-6">
-      {/* start of search bar */}
       <div className="container">
       <br />
       <div className="row justify-content-center">
@@ -75,12 +64,11 @@ export default function Search() {
         </div>
 
       </div>
-      {/* end of search bar */}
     </div>
       
       <center>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
-        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>
+        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue || term}</p>
       </center>
       <br/>
       <br/>

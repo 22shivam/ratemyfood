@@ -15,12 +15,6 @@ export default function School() {
 
   const queryAPI = async (e) => {
     e.preventDefault()
-    if (searchValue==="") {
-      const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
-    const fetchedData = await res.json()
-    setData(fetchedData.eateries)
-      return
-    }
     console.log(searchValue)
     const queryRes = await fetch(`https://api.ratemyfood.tech/api/school/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
@@ -76,7 +70,7 @@ export default function School() {
               </div>
 
               <div className="col">
-                <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search eateries" />
+                <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search school" />
               </div>
 
               <div className="col-auto">

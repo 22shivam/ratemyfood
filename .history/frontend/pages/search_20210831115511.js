@@ -1,12 +1,16 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SearchBar from '../components/searchBar'
 import Image from 'next/image'
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [searchedForValue, setSearchedForValue] = useState("")
+
   const router = useRouter();
+  
+  
 
   const [data, setData] = useState([])
 

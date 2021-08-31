@@ -15,19 +15,13 @@ export default function School() {
 
   const queryAPI = async (e) => {
     e.preventDefault()
-    if (searchValue==="") {
-      const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
-    const fetchedData = await res.json()
-    setData(fetchedData.eateries)
-      return
-    }
     console.log(searchValue)
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/school/${id}/eateries/search?query=${searchValue}`)
+    const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
     console.log(queryFetchedData.results)
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
-    
+    router.push(`search?term=${searchValue}`)
   }
 
   useEffect(async () => {
@@ -60,8 +54,6 @@ export default function School() {
     <div className="mt-6">
       <NavLike heading={schoolName} onBack={()=>{router.push("/")}}></NavLike>
       <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
-
-
       <div className="container">
       <br />
       <div className="row justify-content-center">
@@ -76,7 +68,7 @@ export default function School() {
               </div>
 
               <div className="col">
-                <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search eateries" />
+                <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search school" />
               </div>
 
               <div className="col-auto">
@@ -92,8 +84,6 @@ export default function School() {
         </div>
 
       </div>
-      {/* end of search bar */}
-    </div>
       <br />
       <br />
 

@@ -1,56 +1,41 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import SearchBar from '../components/searchBar'
 import Image from 'next/image'
 
-export default function Search() {
-  const [searchValue, setSearchValue] = useState("");
-  const [searchedForValue, setSearchedForValue] = useState("")
+export default async function Search() {
+  const [searchValue, setSearchValue] = useState();
+
   const router = useRouter();
+  const { term } = router.query;
+  console.log(term)
+  const res = await fetch(`http://api.ratemyfood.tech/api/school/search?query=${term}`)
+  const fetchedData = await res.json()
+  setData(fetchedData.results)
+
+
+
 
   const [data, setData] = useState([])
 
-  const queryAPI = async (e) => {
-    e.preventDefault()
-    console.log(searchValue)
-   
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${searchValue}`)
-    const queryFetchedData = await queryRes.json()
-    console.log(queryFetchedData.results)
-    setData(queryFetchedData.results)
-    setSearchedForValue(searchValue)
-    router.push(`search?term=${searchValue}`)
-  }
-
   useEffect(async () => {
-    if (!router.isReady) { return };
-    const { term } = router.query;
-    const res = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${term}`)
+
+    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/`)
     const fetchedData = await res.json()
-    setSearchedForValue(term)
-    setData(fetchedData.results)
+    setData(fetchedData.schools)
 
-
-  }, [router.isReady])
-
-  // useEffect(async () => {
-
-  //   const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/`)
-  //   const fetchedData = await res.json()
-  //   setData(fetchedData.schools)
-
-  // }, [])
+  }, [])
 
 
   return (
     <div className="container mt-6">
-      {/* start of search bar */}
       <div className="container">
       <br />
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8">
 
-            <form onSubmit={queryAPI}>          
+          <form>
             <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
               <div className="col-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">
@@ -63,30 +48,28 @@ export default function Search() {
               </div>
 
               <div className="col-auto">
-                
+                <Link href={`/search?term=${searchValue}`}>
                 <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "20px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">enter</button>
-                
-             
+                </Link>
               </div>
 
             </div>
-            </form>
-          
+          </form>
         </div>
 
       </div>
-      {/* end of search bar */}
     </div>
+     he
       
       <center>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
-        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>
+        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{term}</p>
       </center>
       <br/>
       <br/>
       
 
-      {data ? (data.length===0) ? "no results found": data.map((school) => {return (
+      {data ? data.map((school) => {return (
           
           <div key={school._id}>
             <center>
