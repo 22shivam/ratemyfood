@@ -35,7 +35,7 @@ export default function Eatery() {
       
       
       <NavLike heading={eatery} onBack={()=>{router.push(`/schools/${schoolId}/`)}}></NavLike>
-      <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" class="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
+      <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
 
         <center>
         <br/><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200"}} className="grayout">select item to view reviews</span>

@@ -25,26 +25,26 @@ export default function FeedbackForm() {
         if (alert) {
             return (
                 
-            <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover" style={{id: "modal-id" }}>
-            <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
-            <div class="rounded-3xl w-full max-w-lg p-5 relative mx-8 my-auto rounded-xl shadow-lg bg-white">
+            <div className="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover" style={{id: "modal-id" }}>
+            <div className="absolute bg-black opacity-80 inset-0 z-0"></div>
+            <div className="rounded-3xl w-full max-w-lg p-5 relative mx-8 my-auto rounded-xl shadow-lg bg-white">
                 {/* <!--content--> */}
-                <div class="">
+                <div className="">
                     {/* <!--body--> */}
-                    <div class="text-center p-5 flex-auto justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-green-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <div className="text-center p-5 flex-auto justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 -m-1 flex items-center text-green-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-green-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 flex items-center text-green-500 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
-                        <h2 class="text-xl font-bold py-4 " style={{ fontFamily: "comfortaa", fontSize: "15px"}}>feedback submitted!</h2>
-                        <p class="text-sm text-gray-500 px-2" style={{ fontFamily: "comfortaa", fontSize: "15px"}}>thank you so much for sharing your thoughts with us!</p>
+                        <h2 className="text-xl font-bold py-4 " style={{ fontFamily: "comfortaa", fontSize: "15px"}}>feedback submitted!</h2>
+                        <p className="text-sm text-gray-500 px-2" style={{ fontFamily: "comfortaa", fontSize: "15px"}}>thank you so much for sharing your thoughts with us!</p>
                     </div>
                     {/* <!--footer--> */}
-                    <div class="p-3  mt-2 text-center space-x-4 md:block">
+                    <div className="p-3  mt-2 text-center space-x-4 md:block">
         
-                        <button class="mb-2 md:mb-0 bg-green-500 border border-green-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-600" onClick={()=>{setAlert(false)}} style={{ fontFamily: "comfortaa", fontSize: "15px"}} >close</button>
+                        <button className="mb-2 md:mb-0 bg-green-500 border border-green-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-600" onClick={()=>{setAlert(false)}} style={{ fontFamily: "comfortaa", fontSize: "15px"}} >close</button>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@ export default function FeedbackForm() {
                 <div className="form-group mb-2">
                     <FormLabel heading="email"></FormLabel>
                     <input value={email} type="email" className="form-control shadow-none rounded-3xl mb-2" id="email" aria-describedby="email" onChange={(e) => { setEmail(e.target.value) }} />
-                    <small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px" }} id="emailHelp" class="form-text text-muted block mb-2 mt-0 mb-3">optional</small>
+                    <small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-3">optional</small>
                 </div>
 
                 <div className="form-group mb-2 mt-4">
