@@ -12,14 +12,7 @@ function MyApp({ Component, pageProps }) {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C3ZGHKCJ2Z"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments)}
-        gtag(&quot;js&quot;, new Date());
-
-        gtag(&quot;config&quot;, &quot;G-C3ZGHKCJ2Z&quot;);
-      </script>
+      
     </Head>
     <Component {...pageProps} />
   </>)
