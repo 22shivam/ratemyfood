@@ -6,7 +6,6 @@ async function Create(params: Eatery): Promise<Eatery> {
     ...params
   });
 
-  
   const error = eatery.validateSync();
   if(error) {
     const missing = Object.keys(error.errors);
