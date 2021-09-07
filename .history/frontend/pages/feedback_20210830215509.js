@@ -18,10 +18,6 @@ export default function FeedbackForm() {
         //         email: email
         //     }),
         // })
-        setName("")
-        setEmail("")
-        setComment("")
-        setPreviousName("")
         setAlert(true)
     }
 
