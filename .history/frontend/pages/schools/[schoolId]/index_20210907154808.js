@@ -108,7 +108,7 @@ export default function School() {
 
       {loading ? <div className=" flex justify-center items-center"><br/>
   <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-</div> : (data.length===0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: data.map((eatery) => {
+</div> : data ? (data.length===0) ? "no results found": data.map((eatery) => {
         return (
           <div key={eatery._id}>
             <center>
@@ -132,7 +132,7 @@ export default function School() {
             </center>
 
           </div>)
-      })}
+      }) : "we dont have data"}
 
     </div>)
 }

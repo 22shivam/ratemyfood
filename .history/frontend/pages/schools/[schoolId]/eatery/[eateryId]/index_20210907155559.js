@@ -54,39 +54,6 @@ export default function Eatery() {
 
   }, [router.isReady, id])
 
-  const addFoodItems = (data) => {
-    return (
-      data.map((food) => {
-        return (
-          <div key={food._id}>
-            <center>
-
-              <Link href={`/schools/${schoolId}/eatery/${id}/food/${food._id}`}>
-                <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
-
-
-                  <div className="p-4 bg-white">
-
-
-                    <h1 className="mb-2 font-bold text-2xl text-center text-lowercase" style={{ fontFamily: "comfortaa", fontSize: "25px", fontWeight: "600" }}>{food.name}</h1>
-                    {renderPrice(food.cost)}
-                    
-                    {/* <div style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} className="text-sm font-semibold grayout py-1 px-3 rounded-full mt-2 text-lowercase">description: {food.description}</div> */}
-                  </div>
-
-                </div>
-              </Link>
-
-              <br></br>
-              <br></br>
-            </center>
-
-          </div>
-        )
-      })
-    )
-  }
-
   const renderPrice = (cost) => {
     if (cost) {
     return (<span className="text-sm font-semibold text-red-50 bg-red-400 py-1 px-3 rounded-full">${cost}</span>)
@@ -137,13 +104,42 @@ export default function Eatery() {
         <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }} className="grayout">showing results for: </p>
         <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }}>{searchedForValue}</p>
       </center> : <div />}
-      
+      {loading ? <div /> :
+        <center>
+          <br /><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200" }} className="grayout">select item to view reviews</span>
+        </center>}
+      <br />
+      <br />
       {loading ? <div className=" flex justify-center items-center"><br />
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-      </div> : (data.length === 0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: <center>
-          <br /><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200" }} className="grayout">select item to view reviews</span><br />
-      <br />{addFoodItems(data)}
-        </center>}
+      </div> : data ? (data.length === 0) ? "no results found" : data.map((food) => {
+        return (
+          <div key={food._id}>
+            <center>
+
+              <Link href={`/schools/${schoolId}/eatery/${id}/food/${food._id}`}>
+                <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
+
+
+                  <div className="p-4 bg-white">
+
+
+                    <h1 className="mb-2 font-bold text-2xl text-center text-lowercase" style={{ fontFamily: "comfortaa", fontSize: "25px", fontWeight: "600" }}>{food.name}</h1>
+                    {renderPrice(food.cost)}
+                    
+                    {/* <div style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} className="text-sm font-semibold grayout py-1 px-3 rounded-full mt-2 text-lowercase">description: {food.description}</div> */}
+                  </div>
+
+                </div>
+              </Link>
+
+              <br></br>
+              <br></br>
+            </center>
+
+          </div>
+        )
+      }) : "we dont have data"}
     </div>
   )
 }

@@ -138,11 +138,12 @@ export default function Eatery() {
         <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }}>{searchedForValue}</p>
       </center> : <div />}
       
+      <br />
+      <br />
       {loading ? <div className=" flex justify-center items-center"><br />
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-      </div> : (data.length === 0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: <center>
-          <br /><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200" }} className="grayout">select item to view reviews</span><br />
-      <br />{addFoodItems(data)}
+      </div> : (data.length === 0) ? <center><span style={{ fontFamily: "comfortaa", fontSize: "14px", fontWeight: "200" }} className="grayout">no results found</span></center>: <center>
+          <br /><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200" }} className="grayout">select item to view reviews</span>{addFoodItems(data)}
         </center>}
     </div>
   )

@@ -58,7 +58,7 @@ export default function Food() {
       <br /><br />
       <br />
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-        </div> : data.length ? data.map((review) => {
+        </div> : data ? data.map((review) => {
           return (
             <div key={review._id}>
               <center>
@@ -88,7 +88,7 @@ export default function Food() {
 
             </div>
           )
-        }) : <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no reviews found. be the first to add a review!</div></center>}
+        }) : "we dont have data"}
       </div>
     </div>
   )

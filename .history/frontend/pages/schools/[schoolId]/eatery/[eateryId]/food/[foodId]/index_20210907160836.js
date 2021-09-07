@@ -88,7 +88,7 @@ export default function Food() {
 
             </div>
           )
-        }) : <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no reviews found. be the first to add a review!</div></center>}
+        }) : <center><span style={{ fontFamily: "comfortaa", fontSize: "14px", fontWeight: "200" }} className="grayout">no reviews found. be the first to add a review!</span></center>}
       </div>
     </div>
   )
