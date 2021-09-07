@@ -34,31 +34,22 @@ export default function Food() {
   }, [router.isReady, id])
 
   return (
-    <div>
+    <>
       <Head>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       </Head>
-      <div className="mt-6">
-        {loading ? <div /> :
-          <div>
-            <NavLike heading={`reviews for ${foodItem}`} onBack={() => { router.push(`/schools/${schoolId}/eatery/${eateryId}`) }}></NavLike>
-            <br />
-            <center>
-              <Link href={`/addreview/${id}`}>
-                <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">add review</button>
-              </Link>
-            </center>
+      <div>
+        <NavLike heading={`reviews for ${foodItem}`} onBack={()=>{router.push(`/schools/${schoolId}/eatery/${eateryId}`)}}></NavLike>
+        <br/>
+        <center>
+          <Link href={`/addreview/${id}`}>
+            <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">add review</button>
+          </Link>
+        </center>
 
-            <br />
-          </div>}
+        <br />
 
-        {loading ? <div class=" flex justify-center items-center"><br/><br /><br />
-      <br /><br />
-      <br /><br />
-      <br /><br />
-      <br />
-          <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-        </div> : data ? data.map((review) => {
+        {data ?data.map((review) => {
           return (
             <div key={review._id}>
               <center>
@@ -70,10 +61,10 @@ export default function Food() {
                   <div className="p-4 bg-white">
 
 
-                    <p className="starability-result" data-rating={review.rating} />
-
-
-
+                    <p className="starability-result" data-rating={review.rating}/>
+                      
+                    
+                    
                     <div style={{ fontFamily: "comfortaa", fontSize: "18px", fontWeight: "600" }} className="text-sm font-semibold  py-1 px-3 rounded-full mt-2 text-lowercase">{review.comment}</div>
                     <h1 className="mb-2 font-bold text-2xl text-center text-lowercase grayout" style={{ fontFamily: "comfortaa", fontSize: "12px", fontWeight: "600" }}>{review.author}</h1>
 
@@ -90,6 +81,6 @@ export default function Food() {
           )
         }) : "we dont have data"}
       </div>
-    </div>
+    </>
   )
 }

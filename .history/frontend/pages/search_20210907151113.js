@@ -18,9 +18,9 @@ export default function Search() {
    
     const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
+    setLoading(false)
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
-    setLoading(false)
     router.push(`search?term=${searchValue}`)
   }
 
@@ -29,9 +29,9 @@ export default function Search() {
     const { term } = router.query;
     const res = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${term}`)
     const fetchedData = await res.json()
+    setLoading(false)
     setSearchedForValue(term)
     setData(fetchedData.results)
-    setLoading(false)
 
 
   }, [router.isReady])
@@ -80,11 +80,11 @@ export default function Search() {
       </div>
       {/* end of search bar */}
     </div>
-      {loading ? <div/>: <center>
+      
+      <center>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>
-      </center>}
-      
+      </center>
       <br/>
       <br/>
       

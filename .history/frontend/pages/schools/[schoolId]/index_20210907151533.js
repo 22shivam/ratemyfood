@@ -19,17 +19,16 @@ export default function School() {
     if (searchValue==="") {
       const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
     const fetchedData = await res.json()
-    setData(fetchedData.eateries)
-    setSearchedForValue(searchValue)
     setLoading(false)
+    setData(fetchedData.eateries)
       return
     }
     console.log(searchValue)
     const queryRes = await fetch(`https://api.ratemyfood.tech/api/school/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
+    setLoading(false)
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
-    setLoading(false)
     
   }
 
@@ -54,15 +53,14 @@ export default function School() {
     //     break
     //   }
     // }
-    setData(fetchedData.eateries)
     setLoading(false)
+    setData(fetchedData.eateries)
 
 
   }, [router.isReady, id])
 
   return (
     <div className="mt-6">
-      {loading ? <div/> : <div>
       <NavLike heading={schoolName} onBack={()=>{router.push("/")}}></NavLike>
       <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
 
@@ -98,17 +96,11 @@ export default function School() {
 
       </div>
       {/* end of search bar */}
-    </div></div>}
-    {loading ? <div/>: searchedForValue ? <center>
-        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
-        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>
-      </center> : <div/>}
+    </div>
       <br />
       <br />
 
-      {loading ? <div class=" flex justify-center items-center"><br/>
-  <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-</div> : data ? (data.length===0) ? "no results found": data.map((eatery) => {
+      {data ? (data.length===0) ? "no results found": data.map((eatery) => {
         return (
           <div key={eatery._id}>
             <center>

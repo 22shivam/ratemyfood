@@ -62,7 +62,6 @@ export default function School() {
 
   return (
     <div className="mt-6">
-      {loading ? <div/> : <div>
       <NavLike heading={schoolName} onBack={()=>{router.push("/")}}></NavLike>
       <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign:"center" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
 
@@ -98,7 +97,7 @@ export default function School() {
 
       </div>
       {/* end of search bar */}
-    </div></div>}
+    </div>
     {loading ? <div/>: searchedForValue ? <center>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>

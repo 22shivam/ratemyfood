@@ -34,11 +34,11 @@ export default function Food() {
   }, [router.isReady, id])
 
   return (
-    <div>
+    <div className="mt-6">
       <Head>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       </Head>
-      <div className="mt-6">
+      <div>
         {loading ? <div /> :
           <div>
             <NavLike heading={`reviews for ${foodItem}`} onBack={() => { router.push(`/schools/${schoolId}/eatery/${eateryId}`) }}></NavLike>
@@ -52,11 +52,7 @@ export default function Food() {
             <br />
           </div>}
 
-        {loading ? <div class=" flex justify-center items-center"><br/><br /><br />
-      <br /><br />
-      <br /><br />
-      <br /><br />
-      <br />
+        {loading ? <div class=" flex justify-center items-center"><br/><br />
           <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
         </div> : data ? data.map((review) => {
           return (
