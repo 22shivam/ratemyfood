@@ -102,8 +102,8 @@ export default function Eatery() {
         </center>}
       <br />
       <br />
-      {loading ? <div className=" flex justify-center items-center"><br />
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
+      {loading ? <div class=" flex justify-center items-center"><br />
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
       </div> : data ? (data.length === 0) ? "no results found" : data.map((food) => {
         return (
           <div key={food._id}>
