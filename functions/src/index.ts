@@ -2,12 +2,12 @@ import * as functions from "firebase-functions";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import { School, Schools, Eatery, Eateries, Food, Foods, Review } from './routes';
+import { School, Schools, Eatery, Eateries, Food, Foods, Review, Reviews } from './routes';
 
 dotenv.config();
 
 async function connect(): Promise<void> {
-  await mongoose.connect(<string>process.env.DBURL, {
+  await mongoose.connect(<string>functions.config().mongoose.uri, {
 
   });
 }
@@ -21,5 +21,6 @@ export {
   Eateries,
   Food,
   Foods,
-  Review
+  Review,
+  Reviews
 };
