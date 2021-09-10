@@ -17,7 +17,7 @@ var router = express();
 
 
 
-router.post('/', async (req, res) => {
+router.post('/school', async (req, res) => {
   try {
     const school = await School.Create({
       name: req.body.name,
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/search', async (req, res) => {
+router.get('/school/search', async (req, res) => {
   try {
     const results = await School.Search(req.query.query);
 
@@ -59,7 +59,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
-router.get('/:id/eateries/search', async (req, res) => {
+router.get('/school/:id/eateries/search', async (req, res) => {
   const results = await Eatery.Search(req.query.query);
 
   res.json({
@@ -67,7 +67,7 @@ router.get('/:id/eateries/search', async (req, res) => {
   });
 });
 
-router.get('/:id/eateries', async (req, res) => {
+router.get('/school/:id/eateries', async (req, res) => {
   const eateries = await Eatery.Find({
     schoolId: req.params.id
   });
@@ -77,7 +77,7 @@ router.get('/:id/eateries', async (req, res) => {
   });
 });
 
-router.get('/:id/foods/search', async (req, res) => {
+router.get('/school/:id/foods/search', async (req, res) => {
   try {
     const results = await Food.Search(req.query.query);
 

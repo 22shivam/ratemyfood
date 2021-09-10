@@ -6,7 +6,7 @@ import * as Food from '../controllers/food';
 
 var router = express();
 
-router.post('/', async (req, res) => {
+router.post('/eatery', async (req, res) => {
   try {
     const eatery = await Eatery.Create({
       name: req.body.name,
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/eatery/:id', async (req, res) => {
   const eatery = await Eatery.FindOne(req.params.id);
 
   res.json({
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
   })
 });
 
-router.get('/:id/foods', async (req, res) => {
+router.get('/eatery/:id/foods', async (req, res) => {
   const foods = await Food.Find({
     eateryId: req.params.id
   });
@@ -54,7 +54,7 @@ router.get('/:id/foods', async (req, res) => {
   });
 });
 
-router.get('/:id/foods/search', async (req, res) => {
+router.get('/eatery/:id/foods/search', async (req, res) => {
   try {
     const results = await Food.Search(req.query.query);
 

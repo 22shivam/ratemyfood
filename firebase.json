@@ -4,5 +4,41 @@
       // "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
     ]
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [{
+      "source": "/schools",
+      "function": "Schools"
+    },
+    {
+      "source": "/school",
+      "function": "School"
+    },
+    {
+      "source": "/review",
+      "function": "Review"
+    },
+    {
+      "source": "/reviews",
+      "function": "Reviews"
+    },
+    {
+      "source": "/food",
+      "function": "Food"
+    },
+    {
+      "source": "/foods",
+      "function": "Foods"
+    },
+    {
+      "source": "/eateries",
+      "function": "Eateries"
+    },
+    {
+      "source": "/eatery",
+      "function": "Eatery"
+    }
+    ]
   }
 }

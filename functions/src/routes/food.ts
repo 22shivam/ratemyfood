@@ -6,7 +6,7 @@ import * as Review from '../controllers/review';
 
 const router = express();
 
-router.post('/', async (req, res) => {
+router.post('/food', async (req, res) => {
   try {
     const food = await Food.Create({
       name: req.body.name,
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/food/:id', async (req, res) => {
   const food = await Food.FindOne(req.params.id);
 
   res.json({
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
   });
 });
 
-router.get('/:id/reviews', async (req, res) => {
+router.get('/food/:id/reviews', async (req, res) => {
   var reviews = await Review.Find({
     foodId: req.params.id
 

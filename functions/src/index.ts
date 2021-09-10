@@ -6,6 +6,8 @@ import { School, Schools, Eatery, Eateries, Food, Foods, Review, Reviews } from 
 
 dotenv.config();
 
+console.error(functions.config());
+
 async function connect(): Promise<void> {
   await mongoose.connect(<string>functions.config().mongoose.uri, {
 

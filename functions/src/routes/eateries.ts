@@ -5,7 +5,7 @@ import * as Eatery from '../controllers/eatery';
 
 var router = express();
 
-router.get('/', async (req, res) => {
+router.get('/eateries', async (req, res) => {
   const eateries = await Eatery.GetAll();
 
   res.json({

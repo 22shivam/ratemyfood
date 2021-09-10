@@ -5,7 +5,7 @@ import * as Food from '../controllers/food';
 
 const router = express();
 
-router.get('/', async (req, res) => {
+router.get('/foods', async (req, res) => {
   const foods = await Food.GetAll();
 
   res.json({

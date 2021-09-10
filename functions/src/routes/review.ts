@@ -5,7 +5,7 @@ import * as Review from '../controllers/review';
 
 const router = express();
 
-router.post('/', async (req, res) => {
+router.post('/review', async (req, res) => {
   try {
     const review = await Review.Create({
       rating: req.body.rating,

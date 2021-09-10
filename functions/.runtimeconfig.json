@@ -1,0 +1,5 @@
+{
+  "mongoose": {
+    "uri": "mongodb+srv://ratemyfoodadmin:YNvYjNoPe3KS3p7i@ratemyfood.jud4q.mongodb.net/ratemyfood?retryWrites=true&w=majority"
+  }
+}
