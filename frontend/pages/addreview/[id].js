@@ -8,7 +8,7 @@ export default function ReviewForm() {
     const addReview = async (event) => {
         event.preventDefault()
         console.log(name, review, rating)
-        await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/review`, {
+        await fetch(`https://api.ratemyfood.tech/review`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

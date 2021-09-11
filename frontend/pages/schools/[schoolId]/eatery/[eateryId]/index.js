@@ -20,7 +20,7 @@ export default function Eatery() {
     e.preventDefault()
     setLoading(true)
     if (searchValue === "") {
-      const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/eatery/${id}/foods`)
+      const res = await fetch(`https://api.ratemyfood.tech/eatery/${id}/foods`)
       const fetchedData = await res.json()
       setLoading(false)
       setData(fetchedData.foods)
@@ -28,7 +28,7 @@ export default function Eatery() {
       return
     }
     console.log(searchValue)
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/eatery/${id}/foods/search?query=${searchValue}`)
+    const queryRes = await fetch(`https://api.ratemyfood.tech/eatery/${id}/foods/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
     setLoading(false)
     setData(queryFetchedData.results)
@@ -41,11 +41,11 @@ export default function Eatery() {
     setId(eateryId)
     setSchoolId(schoolId)
 
-    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/eatery/${id}/foods`)
+    const res = await fetch(`https://api.ratemyfood.tech/eatery/${eateryId}/foods`)
     const fetchedData = await res.json()
     setData(fetchedData.foods)
 
-    const res2 = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/eatery/${id}`)
+    const res2 = await fetch(`https://api.ratemyfood.tech/eatery/${eateryId}`)
     const fetchedData2 = await res2.json()
 
     setEatery(fetchedData2.eatery.name)

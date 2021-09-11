@@ -17,7 +17,7 @@ export default function School() {
     e.preventDefault()
     setLoading(true)
     if (searchValue==="") {
-      const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
+      const res = await fetch(`https://api.ratemyfood.tech/school/${id}/eateries`)
     const fetchedData = await res.json()
     setData(fetchedData.eateries)
     setSearchedForValue(searchValue)
@@ -25,7 +25,7 @@ export default function School() {
       return
     }
     console.log(searchValue)
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/school/${id}/eateries/search?query=${searchValue}`)
+    const queryRes = await fetch(`https://api.ratemyfood.tech/school/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
@@ -39,9 +39,9 @@ export default function School() {
     
     setId(schoolId)
 
-    const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/school/${id}/eateries`)
+    const res = await fetch(`https://api.ratemyfood.tech/school/${schoolId}/eateries`)
     const fetchedData = await res.json()
-    const res2 = await fetch('https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/')
+    const res2 = await fetch('https://api.ratemyfood.tech/schools/')
     const fetchedData2 = await res2.json()
     fetchedData2.schools.forEach((school) => {
       if (school._id === id) {

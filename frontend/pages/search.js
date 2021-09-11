@@ -16,7 +16,7 @@ export default function Search() {
     console.log(searchValue)
     setLoading(true)
    
-    const queryRes = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${searchValue}`)
+    const queryRes = await fetch(`https://api.ratemyfood.tech/school/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
@@ -27,7 +27,7 @@ export default function Search() {
   useEffect(async () => {
     if (!router.isReady) { return };
     const { term } = router.query;
-    const res = await fetch(`https://api.ratemyfood.tech/api/schools/search?query=${term}`)
+    const res = await fetch(`https://api.ratemyfood.tech/school/search?query=${term}`)
     const fetchedData = await res.json()
     setSearchedForValue(term)
     setData(fetchedData.results)

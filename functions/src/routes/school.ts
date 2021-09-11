@@ -1,11 +1,14 @@
 import express from 'express';
 import * as functions from "firebase-functions";
+import cors from 'cors';
 
 import * as School from '../controllers/school';
 import * as Eatery from '../controllers/eatery';
 import * as Food from '../controllers/food';
 
 var router = express();
+
+router.use(cors());
 
 // router.get('/schools', async (req, res) => {
 //   const schools = await GetAll();

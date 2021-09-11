@@ -1,10 +1,13 @@
 import express from 'express';
 import * as functions from "firebase-functions";
+import cors from 'cors';
 
 import * as Eatery from '../controllers/eatery';
 import * as Food from '../controllers/food';
 
 var router = express();
+
+router.use(cors());
 
 router.post('/eatery', async (req, res) => {
   try {

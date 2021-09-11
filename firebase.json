@@ -8,35 +8,39 @@
   "hosting": {
     "public": "public",
     "rewrites": [{
-      "source": "/schools",
+      "source": "/schools/**",
       "function": "Schools"
     },
     {
-      "source": "/school",
+      "source": "/school/**",
       "function": "School"
+    },
+    {
+      "source": "/review/**",
+      "function": "Review"
     },
     {
       "source": "/review",
       "function": "Review"
     },
     {
-      "source": "/reviews",
+      "source": "/reviews/**",
       "function": "Reviews"
     },
     {
-      "source": "/food",
+      "source": "/food/**",
       "function": "Food"
     },
     {
-      "source": "/foods",
+      "source": "/foods/**",
       "function": "Foods"
     },
     {
-      "source": "/eateries",
+      "source": "/eateries/**",
       "function": "Eateries"
     },
     {
-      "source": "/eatery",
+      "source": "/eatery/**",
       "function": "Eatery"
     }
     ]

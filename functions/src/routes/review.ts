@@ -1,10 +1,14 @@
 import express from 'express';
 import * as functions from 'firebase-functions';
+import cors from 'cors';
 
 import * as Review from '../controllers/review';
 
 const router = express();
 
+router.use(cors());
+
+router.options('*', cors);
 router.post('/review', async (req, res) => {
   try {
     const review = await Review.Create({
