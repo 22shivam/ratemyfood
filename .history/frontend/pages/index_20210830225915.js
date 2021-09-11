@@ -5,7 +5,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import SearchBar from '../components/searchBar'
 
-
 export default function Home() {
   const [searchValue, setSearchValue] = useState();
   return (
