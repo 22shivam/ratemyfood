@@ -29,7 +29,6 @@ export default function Search() {
     const { term } = router.query;
     const res = await fetch(`https://api.ratemyfood.tech/school/search?query=${term}`)
     const fetchedData = await res.json()
-    console.log("recieved data")
     setSearchedForValue(term)
     setData(fetchedData.results)
     setLoading(false)
