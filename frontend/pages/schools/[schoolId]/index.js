@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import NavLike from '../../../components/navLike'
+import BaseUrl from '../../../utils/base-url';
 
 export default function School() {
   const [searchValue, setSearchValue] = useState("");
@@ -17,7 +18,7 @@ export default function School() {
     e.preventDefault()
     setLoading(true)
     if (searchValue==="") {
-      const res = await fetch(`https://api.ratemyfood.tech/school/${id}/eateries`)
+      const res = await fetch(`${BaseUrl}/School/school/${id}/eateries`)
     const fetchedData = await res.json()
     setData(fetchedData.eateries)
     setSearchedForValue(searchValue)
@@ -25,18 +26,18 @@ export default function School() {
       return
     }
     console.log(searchValue)
-    const queryRes = await fetch(`https://api.ratemyfood.tech/school/${id}/eateries/search?query=${searchValue}`)
+    const queryRes = await fetch(`${BaseUrl}/School/school/${id}/eateries/search?query=${searchValue}`)
     const queryFetchedData = await queryRes.json()
     setData(queryFetchedData.results)
     setSearchedForValue(searchValue)
     setLoading(false)
-    
+
   }
 
   useEffect(async () => {
     if (!router.isReady) { return };
     const { schoolId } = router.query;
-    
+
     setId(schoolId)
 
     const res = await fetch(`https://api.ratemyfood.tech/school/${schoolId}/eateries`)
@@ -72,7 +73,7 @@ export default function School() {
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8">
 
-            <form onSubmit={queryAPI}>          
+            <form onSubmit={queryAPI}>
             <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
               <div className="col-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">
@@ -85,15 +86,15 @@ export default function School() {
               </div>
 
               <div className="col-auto">
-                
+
                 <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "20px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">enter</button>
-                
-             
+
+
               </div>
 
             </div>
             </form>
-          
+
         </div>
 
       </div>
@@ -117,8 +118,8 @@ export default function School() {
                   <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
                     {/* <center><Image src="/images/indianaUniversityLogo.jpeg" alt={eatery.name} height="200" width="200" /></center> */}
 
-                    <div className="p-4 bg-white">        
-                    
+                    <div className="p-4 bg-white">
+
 
                       <h1 className="mb-2 font-bold text-2xl text-center text-lowercase" style={{ fontFamily: "comfortaa", fontSize: "25px", fontWeight: "600" }}>{eatery.name}</h1>
                       <span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "600" }} className="text-sm font-semibold grayout py-1 px-3 text-lowercase rounded-full">location: {eatery.location}</span>
