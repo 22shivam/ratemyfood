@@ -6,7 +6,6 @@ import Head from 'next/head'
 import { pushReview } from '../../utils/update';
 import { getFood } from '../../utils/query';
 
-
 function ReviewForm({ id, food }) {
     const router = useRouter();
     const [name, setName] = useState("")
