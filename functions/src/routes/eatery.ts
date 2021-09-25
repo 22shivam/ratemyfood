@@ -48,11 +48,13 @@ router.get('/eatery/:id', async (req, res) => {
 });
 
 router.get('/eatery/:id/foods', async (req, res) => {
+  const eatery = await Eatery.FindOne(req.params.id);
   const foods = await Food.Find({
     eateryId: req.params.id
   });
 
   res.json({
+    eatery,
     foods
   });
 });

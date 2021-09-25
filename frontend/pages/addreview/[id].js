@@ -3,35 +3,30 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import FormLabel from '../../components/formLabel'
 import Head from 'next/head'
+import { pushReview } from '../../utils/update';
+import { getFood } from '../../utils/query';
 
-export default function ReviewForm() {
-    const addReview = async (event) => {
-        event.preventDefault()
-        console.log(name, review, rating)
-        await fetch(`https://api.ratemyfood.tech/review`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                rating: rating,
-                comment: review,
-                foodId: id,
-                author: name
-            }),
-          })
-        router.back()
-
-    }
-
-    
-
+function ReviewForm({ id, food }) {
     const router = useRouter();
     const [name, setName] = useState("")
     const [previousName, setPreviousName] = useState("")
     const [review, setReview] = useState("")
     const [rating, setRating] = useState("0")
-    const [id, setId] = useState("")
+    const [loading, setLoading] = useState(false);
+
+    const addReview = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+
+        await pushReview(JSON.stringify({
+            rating: rating,
+            comment: review,
+            foodId: id,
+            author: name
+        }), 5);
+        router.back()
+
+    }
 
     function annonymousButtonClick(e) {
         if (name !== "annonymous") {
@@ -42,17 +37,16 @@ export default function ReviewForm() {
         }
     }
 
-    useEffect(async () => {
-        if (!router.isReady) { return };
-        const { id } = router.query;
-        setId(id)
-        console.log(id)
-    
-      }, [router.isReady])
+    if(loading) {
+       return (<center><div className=" flex justify-center items-center"><br />
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
+      </div> 
+        </center>)
+    }
 
     return (
         <>
-            <NavLike heading="add review" onBack={router.back}></NavLike>
+            <NavLike heading={`add review for ${food.name}`} onBack={router.back}></NavLike>
             <br />
             <form className="container" onSubmit={addReview}>
                 <div className="form-group mb-2">
@@ -72,7 +66,7 @@ export default function ReviewForm() {
                 </div>
 
                 <div className="form-group mb-2 mt-4 flex" style={{alignItems:"center"}}>
-                    <label className="mb-2 px-3 mr-3" htmlFor="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>inline rating</label>
+                    <label className="mb-2 px-3 mr-3" htmlFor="inline rating" style={{fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "10px" }}>rating</label>
     
                     <fieldset className="starability-basic" style={{alignItems:"center", position: 'relative', top: "9px"}}>
                         <input type="radio" id="no-rate" className="input-no-rate" name="rating" value="0" checked aria-label="No rating." onClick={()=>{setRating("0")}}/>
@@ -94,7 +88,7 @@ export default function ReviewForm() {
                 <br/>
                 <br/>
                 <center>
-                <button type="submit" className="btn btn-primary mb-2 px-4" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "12px" }}>submit</button>
+                <button type="submit" className="btn btn-primary mb-2 px-4" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white", padding: "12px" }}>Add Review</button>
                 </center>
             </form>
 
@@ -107,3 +101,13 @@ export default function ReviewForm() {
     )
 }
 
+ReviewForm.getInitialProps = async (ctx) => {
+    const { food } = await getFood(ctx.query.id);
+
+    return {
+        id: ctx.query.id,
+        food
+    }
+}
+
+export default ReviewForm;

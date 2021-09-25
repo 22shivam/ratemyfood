@@ -1,89 +1,61 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { querySearch } from '../utils/query';
 
-export default function Search() {
+function Search({ results, term }) {
   const [searchValue, setSearchValue] = useState("");
-  const [searchedForValue, setSearchedForValue] = useState("")
-  const [loading, setLoading] = useState("true")
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [schools, setSchools] = useState(results);
+  const [searchTerm, setSearchTerm] = useState(term);
 
-  const [data, setData] = useState([])
 
-  const queryAPI = async (e) => {
-    e.preventDefault()
-    console.log(searchValue)
-    setLoading(true)
-   
-    const queryRes = await fetch(`https://api.ratemyfood.tech/school/search?query=${searchValue}`)
-    const queryFetchedData = await queryRes.json()
-    setData(queryFetchedData.results)
-    setSearchedForValue(searchValue)
-    setLoading(false)
-    router.push(`search?term=${searchValue}`)
+  const updateSearch = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setSchools(await querySearch(searchValue));
+    setSearchTerm(searchValue);
+    
+    setLoading(false);
   }
 
-  useEffect(async () => {
-    if (!router.isReady) { return };
-    const { term } = router.query;
-    const res = await fetch(`https://api.ratemyfood.tech/school/search?query=${term}`)
-    const fetchedData = await res.json()
-    console.log("recieved data")
-    setSearchedForValue(term)
-    setData(fetchedData.results)
-    setLoading(false)
-
-
-  }, [router.isReady])
-
-  // useEffect(async () => {
-
-  //   const res = await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/schools/`)
-  //   const fetchedData = await res.json()
-  //   setData(fetchedData.schools)
-
-  // }, [])
-
-
+  
   return (
     <div className="container mt-6">
       {/* start of search bar */}
       <div className="container">
-      <br />
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-10 col-lg-8">
+        <br />
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-10 col-lg-8">
+            <form onSubmit={updateSearch}>          
+              <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
+                <div className="col-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
 
-            <form onSubmit={queryAPI}>          
-            <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
-              <div className="col-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+                <div className="col">
+                  <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search school" />
+                </div>
+
+                <div className="col-auto">
+                  
+                  <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "20px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">enter</button>
+                  
+              
+                </div>
+
               </div>
-
-              <div className="col">
-                <input className="form-control form-control-lg form-control-borderless shadow-none border-0" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }}  style={{ fontFamily: "comfortaa", fontSize: "1em" }} type="search" placeholder="search school" />
-              </div>
-
-              <div className="col-auto">
-                
-                <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "20px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">enter</button>
-                
-             
-              </div>
-
-            </div>
             </form>
-          
+          </div>
         </div>
-
-      </div>
       {/* end of search bar */}
     </div>
       {loading ? <div/>: <center>
         <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}} className="grayout">showing results for: </p>
-        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchedForValue}</p>
+        <p style={{fontFamily: "comfortaa", fontSize: "12px", display:"inline"}}>{searchTerm}</p>
       </center>}
       
       <br/>
@@ -92,7 +64,7 @@ export default function Search() {
 
       {loading ? <div className=" flex justify-center items-center"><br/>
   <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-</div> : (data.length===0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: data.map((school) => {return (
+</div> : (schools.length===0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: schools.map((school) => {return (
           
           <div key={school._id}>
             <center>
@@ -117,3 +89,14 @@ export default function Search() {
     </div>
   )
 }
+
+Search.getInitialProps = async (ctx) => {
+  const results = await querySearch(ctx.query.term);
+
+  return {
+    results,
+    term: ctx.query.term
+  };
+}
+
+export default Search;

@@ -3,35 +3,12 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import NavLike from '../../../../../../../components/navLike'
-export default function Food() {
-
+import { queryReviews } from '../../../../../../../utils/query';
+ function Food({ food, reviews, eatery }) {
   const router = useRouter();
 
-  const [data, setData] = useState([])
-  const [foodItem, setFoodItem] = useState("")
-  const [id, setId] = useState("")
-  const [schoolId, setSchoolId] = useState("")
-  const [eateryId, setEateryId] = useState("")
-  const [loading, setLoading] = useState("true")
+  const [loading, setLoading] = useState(false)
 
-  useEffect(async () => {
-    if (!router.isReady) { return };
-    const { foodId, eateryId, schoolId } = router.query;
-    setId(foodId)
-    setSchoolId(schoolId)
-    setEateryId(eateryId)
-
-    const res = await fetch(`https://api.ratemyfood.tech/food/${foodId}/reviews`)
-    const fetchedData = await res.json()
-    setData(fetchedData.reviews)
-
-    const res2 = await fetch(`https://api.ratemyfood.tech/food/${foodId}/`)
-    const fetchedData2 = await res2.json()
-    setFoodItem(fetchedData2.food.name)
-
-    setLoading(false)
-
-  }, [router.isReady, id])
 
   return (
     <div>
@@ -41,10 +18,10 @@ export default function Food() {
       <div className="mt-6">
         {loading ? <div /> :
           <div>
-            <NavLike heading={`reviews for ${foodItem}`} onBack={() => { router.push(`/schools/${schoolId}/eatery/${eateryId}`) }}></NavLike>
+            <NavLike heading={`reviews for ${food.name}`} onBack={() => { router.push(`/schools/${eatery.schoolId}/eatery/${eatery._id}`) }}></NavLike>
             <br />
             <center>
-              <Link href={`/addreview/${id}`}>
+              <Link href={`/addreview/${food._id}`}>
                 <button className="btn rounded-4xl font-semibold rounded-lg cursor-pointer" style={{ fontFamily: "comfortaa", fontSize: "15px", backgroundColor: "black", borderRadius: "20px", color: "white" }} type="submit">add review</button>
               </Link>
             </center>
@@ -58,7 +35,7 @@ export default function Food() {
       <br /><br />
       <br />
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-        </div> : data.length ? data.map((review) => {
+        </div> : reviews.length ? reviews.map((review) => {
           return (
             <div key={review._id}>
               <center>
@@ -93,3 +70,15 @@ export default function Food() {
     </div>
   )
 }
+
+Food.getInitialProps = async (ctx) => {
+  const { food, reviews, eatery} = await queryReviews(ctx.query.foodId);
+
+  return {
+    food,
+    eatery,
+    reviews
+  };
+}
+
+export default Food;

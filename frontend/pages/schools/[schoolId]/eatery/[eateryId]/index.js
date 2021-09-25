@@ -1,58 +1,28 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import NavLike from '../../../../../components/navLike'
+import { queryFood, searchFood } from '../../../../../utils/query';
 
-export default function Eatery() {
-
+function Eatery({ schoolId, eatery, foods }) {
+  const eateryId = eatery._id;
   const [searchValue, setSearchValue] = useState("");
-  const [searchedForValue, setSearchedForValue] = useState("")
-  const [loading, setLoading] = useState("true")
+  const [searchTerm, setSearchTerm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [foodList, setFoodList] = useState(foods);
 
   const router = useRouter();
 
-  const [data, setData] = useState([])
-  const [eatery, setEatery] = useState("")
-  const [id, setId] = useState("")
-  const [schoolId, setSchoolId] = useState("")
 
-  const queryAPI = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    if (searchValue === "") {
-      const res = await fetch(`https://api.ratemyfood.tech/eatery/${id}/foods`)
-      const fetchedData = await res.json()
-      setLoading(false)
-      setData(fetchedData.foods)
-      setSearchedForValue(searchValue)
-      return
-    }
-    console.log(searchValue)
-    const queryRes = await fetch(`https://api.ratemyfood.tech/eatery/${id}/foods/search?query=${searchValue}`)
-    const queryFetchedData = await queryRes.json()
-    setLoading(false)
-    setData(queryFetchedData.results)
-    setSearchedForValue(searchValue)
+  const updateSearch = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setFoodList(await searchFood(eateryId, searchValue));
+    setSearchTerm(searchValue);
+
+    setLoading(false);
   }
-
-  useEffect(async () => {
-    if (!router.isReady) { return };
-    const { eateryId, schoolId } = router.query;
-    setId(eateryId)
-    setSchoolId(schoolId)
-
-    const res = await fetch(`https://api.ratemyfood.tech/eatery/${eateryId}/foods`)
-    const fetchedData = await res.json()
-    setData(fetchedData.foods)
-
-    const res2 = await fetch(`https://api.ratemyfood.tech/eatery/${eateryId}`)
-    const fetchedData2 = await res2.json()
-
-    setEatery(fetchedData2.eatery.name)
-    setLoading(false)
-
-
-  }, [router.isReady, id])
 
   const addFoodItems = (data) => {
     return (
@@ -61,7 +31,7 @@ export default function Eatery() {
           <div key={food._id}>
             <center>
 
-              <Link href={`/schools/${schoolId}/eatery/${id}/food/${food._id}`}>
+              <Link href={`/schools/${schoolId}/eatery/${eateryId}/food/${food._id}`}>
                 <div className="shadow w-80 rounded-md cursor-pointer overflow-hidden hover:shadow-xl transform hover:scale-105 duration-500 rounded-3xl">
 
 
@@ -99,14 +69,14 @@ export default function Eatery() {
     <div className="mt-6">
 
       {loading ? <div /> : <div>
-        <NavLike heading={eatery} onBack={() => { router.push(`/schools/${schoolId}/`) }}></NavLike>
+        <NavLike heading={eatery.name} onBack={() => { router.push(`/schools/${schoolId}/`) }}></NavLike>
         <Link href="/feedback"><small style={{ fontFamily: "comfortaa", fontSize: "12px", color: "white", padding: "0 5px", textAlign: "center" }} id="emailHelp" className="form-text text-muted block mb-2 mt-0 mb-2 cursor-pointer underline">share feedback</small></Link>
         <div className="container">
           <br />
           <div className="row justify-content-center">
             <div className="col-12 col-md-10 col-lg-8">
 
-              <form onSubmit={queryAPI}>
+              <form onSubmit={updateSearch}>
                 <div className="row no-gutters align-items-center rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 opacity-70">
                   <div className="col-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-6 opacity-30 input-group-prepend" fill="none" viewBox="0 0 20 20" stroke="currentColor">
@@ -133,17 +103,30 @@ export default function Eatery() {
           </div>
           {/* end of search bar */}
         </div></div>}
-      {loading ? <div /> : searchedForValue ? <center>
+      {loading ? <div /> : searchTerm ? <center>
         <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }} className="grayout">showing results for: </p>
-        <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }}>{searchedForValue}</p>
+        <p style={{ fontFamily: "comfortaa", fontSize: "12px", display: "inline" }}>{searchTerm}</p>
       </center> : <div />}
       
       {loading ? <div className=" flex justify-center items-center"><br />
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
-      </div> : (data.length === 0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: <center>
+      </div> : (foodList.length === 0) ? <center><div style={{ fontFamily: "comfortaa", fontSize: "20px", fontWeight: "400" }} className="mt-10">no results found</div></center>: <center>
           <br /><span style={{ fontFamily: "comfortaa", fontSize: "15px", fontWeight: "200" }} className="grayout">select item to view reviews</span><br />
-      <br />{addFoodItems(data)}
+      <br />{addFoodItems(foodList)}
         </center>}
     </div>
   )
 }
+
+Eatery.getInitialProps = async (ctx) => {
+  const {eatery, foods} = await queryFood(ctx.query.eateryId);
+  const schoolId = eatery.schoolId;
+
+  return {
+    eatery,
+    foods,
+    schoolId
+  }
+}
+
+export default Eatery;

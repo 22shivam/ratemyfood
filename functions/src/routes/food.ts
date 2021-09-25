@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import * as Food from '../controllers/food';
 import * as Review from '../controllers/review';
+import * as Eatery from '../controllers/eatery';
 
 const router = express();
 
@@ -48,6 +49,9 @@ router.get('/food/:id', async (req, res) => {
 });
 
 router.get('/food/:id/reviews', async (req, res) => {
+  const food = await Food.FindOne(req.params.id);
+  const eatery = await Eatery.FindOne(food.eateryId);
+
   var reviews = await Review.Find({
     foodId: req.params.id
 
@@ -56,7 +60,9 @@ router.get('/food/:id/reviews', async (req, res) => {
   reviews = reviews.reverse();
 
   res.send({
-    reviews
+    food,
+    reviews,
+    eatery
   });
 });
 

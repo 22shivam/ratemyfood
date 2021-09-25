@@ -1,1 +1,1 @@
-export default "https://us-central1-ratemyfood.cloudfunctions.net/";
+export default "https://us-central1-ratemyfood.cloudfunctions.net";

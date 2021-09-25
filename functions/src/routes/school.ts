@@ -71,11 +71,14 @@ router.get('/school/:id/eateries/search', async (req, res) => {
 });
 
 router.get('/school/:id/eateries', async (req, res) => {
+  const school = await School.FindOne(req.params.id);
+
   const eateries = await Eatery.Find({
     schoolId: req.params.id
   });
 
   res.json({
+    school,
     eateries
   });
 });

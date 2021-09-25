@@ -2,26 +2,33 @@ import NavLike from '../components/navLike'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import FormLabel from '../components/formLabel'
+import { pushFeedback } from '../utils/update';
 
 export default function FeedbackForm() {
+    const router = useRouter();
+    const [name, setName] = useState("")
+    const [previousName, setPreviousName] = useState("")
+    const [email, setEmail] = useState("")
+    const [comment, setComment] = useState("")
+    const [alert, setAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const addFeedback = async (event) => {
         event.preventDefault()
-        console.log(name, email, comment)
-        // await fetch(`https://ratemyfood-2dqcpifvva-ue.a.run.app/api/feedback`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         comment: comment,
-        //         author: name,
-        //         email: email
-        //     }),
-        // })
+        setLoading(true);
+        console.log(name, email, comment);
+
+        // await pushFeedback(JSON.stringify({
+        //     comment: comment,
+        //     author: name,
+        //     email: email
+        // }), 5);
+        
         setName("")
         setEmail("")
         setComment("")
         setPreviousName("")
+        setLoading(false);
         setAlert(true)
     }
 
@@ -57,16 +64,6 @@ export default function FeedbackForm() {
         }
     }
 
-
-
-    const router = useRouter();
-    const [name, setName] = useState("")
-    const [previousName, setPreviousName] = useState("")
-    const [email, setEmail] = useState("")
-    const [comment, setComment] = useState("")
-    // const [id, setId] = useState("")
-    const [alert, setAlert] = useState(false)
-
     function annonymousButtonClick(e) {
         if (e.target.checked) {
             setPreviousName(name)
@@ -76,13 +73,12 @@ export default function FeedbackForm() {
         }
     }
 
-    // useEffect(async () => {
-    //     if (!router.isReady) { return };
-    //     const { id } = router.query;
-    //     setId(id)
-    //     console.log(id)
-
-    // }, [router.isReady])
+    if(loading) {
+        return (<center><div className=" flex justify-center items-center"><br />
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-black-500"></div>
+            </div> 
+        </center>)
+    }
 
     return (
         <>
