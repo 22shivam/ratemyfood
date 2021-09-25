@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import { School, Schools, Eatery, Eateries, Food, Foods, Review, Reviews } from './routes';
+import { School, Schools, Eatery, Eateries, Food, Foods, Review, Reviews, Feedback } from './routes';
 
 dotenv.config();
 
@@ -24,5 +24,6 @@ export {
   Food,
   Foods,
   Review,
-  Reviews
+  Reviews,
+  Feedback
 };

@@ -18,11 +18,11 @@ export default function FeedbackForm() {
         setLoading(true);
         console.log(name, email, comment);
 
-        // await pushFeedback(JSON.stringify({
-        //     comment: comment,
-        //     author: name,
-        //     email: email
-        // }), 5);
+        await pushFeedback(JSON.stringify({
+            comment: comment,
+            author: name,
+            email: email
+        }), 5);
         
         setName("")
         setEmail("")

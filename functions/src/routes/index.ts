@@ -6,6 +6,7 @@ import Food from './food';
 import Foods from './foods';
 import Review from './review';
 import Reviews from './reviews';
+import Feedback from './feedback';
 
 export {
   School,
@@ -15,5 +16,6 @@ export {
   Food,
   Foods,
   Review,
-  Reviews
+  Reviews,
+  Feedback
 };
